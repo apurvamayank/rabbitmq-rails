@@ -1,0 +1,8 @@
+<div class = "container">
+	<%= form_for @user, :html => {:class =>"form-signin"},:url => home_create_path do |f|%>
+<h3 class="form-signin-heading">Enter name to get started</h3>    
+    <%= f.text_field :name,:class => "input-block-level",:placeholder => "name"  %>
+    <%= f.submit "Get Started",:class => "btn btn-large btn-primary" %>
+<% end %>
+</div>
+

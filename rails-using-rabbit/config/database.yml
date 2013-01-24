@@ -1,0 +1,6 @@
+development:
+  adapter: mysql2
+  encoding: utf8
+  database: rabbit_development
+  username: root
+  password: webonise6186

@@ -1,0 +1,4 @@
+$("#message").val("");
+<%if @msg != nil %>
+$('#msg_list').append('<%= escape_javascript(render :partial => 'home/messages', :locals => {:msg => @msg}) %>');
+<% end %>

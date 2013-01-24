@@ -1,0 +1,122 @@
+== Messaging Application with Rails and RabbitMQ
+
+Simple rails messaging application using RabbitMQ following 1:1 communication
+
+== Prerequisite
+
+* Ruby 1.9.2-p180 should be installed on your machine via <tt>rvm</tt>.
+* RabbitMQ should be installed on your machine. Follow this for instructions: http://www.rabbitmq.com/download.html
+* <tt>vmc</tt> gem should be installed on your machine to deploy the app on Cloud Foundry.
+
+== Setting up the app locally
+
+* Clone the projcet by using the following command.
+
+  git clone git@github.com:apurvamayank/rails-messaging-using-rabbitmq.git
+
+* Install the gems specified in <tt>Gemfile</tt> by running following command in terminal.
+
+    bundle install
+
+* Bundle the packages
+
+    bundle package
+    bundle install
+
+* Change the configuration for serving the static assets to <tt>true</tt>. Do this by modifying the below line in <tt>config/environments/production.rb</tt> file
+
+   config.serve_static_assets = false
+
+   to
+
+   config.serve_static_assets = true
+
+* Precompile the assets by using the following command.
+
+   bundle exec rake assets:precompile
+
+* Install <tt>vmc</tt> gem (if not installed previously on your machine) by running the following command.
+
+   gem install vmc
+
+* Set vmc target to *cloudfoundry.com* by running the following command.
+
+   vmc target api.cloudfoundry.com
+
+* Login to CloudFoundry using vmc command line tool as shown below.
+
+   vmc login --email --password
+
+* Now push the app to Cloud Foundry by runnig the following commands.
+
+   vmc push --runtime ruby19
+
+* Respond to some interactive prompts to push the application on Cloud Foundry. These will be as shown below.
+
+   Name> rails-messaging-using-rabbitmq
+   Instances> 1
+   Framework> rails3
+   1: 64M
+   2: 128M
+   3: 256M
+   4: 512M
+   5: 1G
+   Memory Limit> 256M
+
+   Creating rails-messaging-using-rabbitmq... OK
+
+   1: rails-messaging-using-rabbitmq.cloudfoundry.com
+   2: none
+   URL> rails-messaging-using-rabbitmq.cloudfoundry.com
+
+   Updating rails-messaging-using-rabbitmq... OK
+
+   Create services for application?> y
+
+   1: mongodb 2.0
+   2: mysql 5.1
+   3: postgresql 9.0
+   4: rabbitmq 2.4
+   5: redis 2.6
+   6: redis 2.2
+   7: redis 2.4
+   What kind?> 2
+
+   Name?> mysql-4f311
+
+   Creating service  mysql-4f311... OK
+   Binding redis-4f311 to rails-messaging-using-rabbitmq... OK
+   Create another service?> y
+
+   1: mongodb 2.0
+   2: mysql 5.1
+   3: postgresql 9.0
+   4: rabbitmq 2.4
+   5: redis 2.6
+   6: redis 2.2
+   7: redis 2.4
+   What kind?> 4
+
+   Name?> rabbitmq-i73f5
+
+   Creating service  rabbitmq-i73f5... OK
+   Binding redis-4f311 to rails-messaging-using-rabbitmq... OK
+
+   Bind other services to application?> n
+
+   Save configuration?> n
+
+   Uploading rails-messaging-using-rabbitmq... OK
+   Starting rails-messaging-using-rabbitmq... OK
+   Checking rails-messaging-using-rabbitmq... OK
+
+* Check the application by the following command:
+
+   $ vmc apps
+
+
+
+
+* Name of the application in the process of deployment must be unique.
+
+

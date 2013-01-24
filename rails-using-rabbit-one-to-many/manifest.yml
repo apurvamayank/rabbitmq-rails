@@ -1,0 +1,18 @@
+---
+applications:
+- name: rails-rabbit-one-to-many
+  framework: rails3
+  runtime: ruby19
+  memory: 256M
+  instances: 1
+  url: rails-rabbit-one-to-many.${target-base}
+  path: .
+  services:
+    rabbitmq-one2man:
+      vendor: rabbitmq
+      version: '2.4'
+      tier: free
+    mysql-one2man:
+      vendor: mysql
+      version: '5.1'
+      tier: free

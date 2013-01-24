@@ -1,0 +1,18 @@
+<div class="hero-unit span8">
+  <h2>Publish a message</h2><br/>
+<%= form_tag({:controller => "home", :action => "publish"}, :method => "post",:remote => true) do %>
+    <%= text_field_tag(:message) %>
+     <%= hidden_field_tag "name",params[:name]%>
+    <%= submit_tag "Publish/Get new message", :class => "btn btn-primary btn-large"  %>
+<% end %>
+</div>
+<div class="span4 pull-right">
+  <div class="well sidebar-nav">
+    <ul class="nav nav-list" id="msg_list">
+    </ul>
+  </div>
+<%#= form_tag({:controller => "home", :action => "get_message"}, :method => "post", :remote => true ) do %>
+ <%#= hidden_field_tag "name",params[:name]%>
+    <%#= submit_tag "Get new message", :class => "btn btn-large btn-success" %>
+<%# end %>
+</div>
